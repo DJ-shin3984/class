@@ -12,8 +12,6 @@ interface ILayoutProps {
 
 export default function Layout(props: ILayoutProps): JSX.Element {
   const router = useRouter();
-  console.log(`!@# ${router.asPath}`);
-
   const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
 
   return (
@@ -21,7 +19,7 @@ export default function Layout(props: ILayoutProps): JSX.Element {
       {!isHiddenHeader && <LayoutHeader />}
       {!isHiddenHeader && <LayoutBanner />}
       {!isHiddenHeader && <LayoutNavigation />}
-      <div style={{ height: "200px", display: "flex " }}>
+      <div style={{ height: "500px", display: "flex " }}>
         {!isHiddenHeader && (
           <div style={{ width: "30%", background: "orange" }}>side bar</div>
         )}
