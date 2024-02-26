@@ -1,6 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
-import { ChangeEvent } from "react";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   IMutation,
   IMutationUploadFileArgs,
