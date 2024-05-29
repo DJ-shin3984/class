@@ -24,7 +24,7 @@ export default function Layout(props: ILayoutProps): JSX.Element {
           <div style={{ width: "30%", background: "orange" }}>side bar</div>
         )}
 
-        <div style={{ width: "79%", overflow: "auto;" }}>{props.children}</div>
+        <div style={{ width: "79%", overflow: "auto" }}>{props.children}</div>
       </div>
       <LayoutFooter></LayoutFooter>
     </>

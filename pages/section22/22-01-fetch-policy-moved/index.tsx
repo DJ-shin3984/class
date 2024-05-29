@@ -1,9 +1,8 @@
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql } from '@apollo/client'
 import {
-  IQuery,
-  IQueryFetchBoardArgs,
-  IQueryFetchBoardsArgs,
-} from "../../../src/commons/types/generated/type";
+  type IQuery,
+  type IQueryFetchBoardsArgs
+} from '../../../src/commons/types/generated/type'
 
 const FETCH_BOARDS = gql`
   query fetchBoards {
@@ -12,17 +11,13 @@ const FETCH_BOARDS = gql`
       writer
     }
   }
-`;
+`
 
 export default function StaticRoutedPage(): JSX.Element {
   const { data, refetch } = useQuery<
-    Pick<IQuery, "fetchBoards">,
-    IQueryFetchBoardsArgs
-  >(FETCH_BOARDS);
+  Pick<IQuery, 'fetchBoards'>,
+  IQueryFetchBoardsArgs
+  >(FETCH_BOARDS)
 
-  const myStyles = {
-    margin: "10px",
-  };
-
-  return <div></div>;
+  return <div></div>
 }

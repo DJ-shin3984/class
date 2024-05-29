@@ -26,7 +26,7 @@ export default function FetchPolicyExample(): JSX.Element {
 
   const myStyles = {
     margin: "10px",
-  };
+  }; 
 
   return (
     <div>
