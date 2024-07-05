@@ -11,7 +11,7 @@ const FETCH_USER_LOGED_IN = gql`
   }
 `
 
-function myPage (): JSX.Element {
+function MyPage (): JSX.Element {
   const { data } = useQuery<Pick<IQuery, 'fetchUserLoggedIn'>>(FETCH_USER_LOGED_IN)
 
   return (
@@ -21,4 +21,4 @@ function myPage (): JSX.Element {
   )
 }
 
-export default loginCheck(myPage)
+export default loginCheck(MyPage)
