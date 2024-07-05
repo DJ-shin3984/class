@@ -15,7 +15,7 @@ const CREATE_PRODUCT = gql`
   }
 `
 
-export default function GraphqlMutationPage(): JSX.Element {
+export default function GraphqlMutationPage (): JSX.Element {
   const [createProduct] = useMutation(CREATE_PRODUCT)
 
   const onClickSubmit = async (): Promise<void> => {
