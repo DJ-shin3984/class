@@ -1,0 +1,6 @@
+function useTestB(test) {
+  return {
+    data: {fetchBoard: {writer: '철수'}},
+    refetch: () => { console..log('리패치 실행') }
+  }
+}
