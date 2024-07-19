@@ -36,7 +36,7 @@ export default function WebEditorPage() {
       writer: <input type="text"/><br/>
       password: <input type="password"/><br/>
       title: <input type="text"/><br/>
-      constent: <ReactQuill onChange={onCangecontens}/>
+      content: <ReactQuill onChange={onCangecontens}/>
       {/* contents: {" "}{process.browser ? <ReactQuill onChange={onCangecontens}/> : <div/>} */}
       {/* {typeof window !== undefined ? <ReactQuill onChange={onCangecontens}/> : <div/>} */}
       <button>submit</button>
