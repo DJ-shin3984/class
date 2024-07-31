@@ -1,0 +1,108 @@
+<!-- `http://numbersapi.com/random?min=1&max=200` -->
+<!-- `https://koreajson.com/posts/${num}` -->
+<!-- `https://koreajson.com/posts?userId=${userId}` -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>callback promise async</title>
+</head>
+  <!-- 
+    axios 를 cdn / npm / yarn 모두 설치가능 이지만 여기선 cdn 으로 설치할것
+    axios cdn 을 구글에 검색 Axios Docs 를 보자
+  -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // function addEventListener(aaa, bbb){
+    //   // set API 주소로 요청
+    //   const res = 70 // 셋팅된 API 주소로부터 받아온 결과
+    //   if (aaa === "load"){
+    //     bbb(res)
+    //   }
+    // }
+
+    const myCallBack = () => {
+      const aa = new XMLHttpRequest()
+      aa.open("get",`http://numbersapi.com/random?min=1&max=200`)
+      aa.send()
+      aa.addEventListener("load",(res) => {
+        console.log(res) // API 요청 결과
+        const num = res.target.response.split(" ")[0]
+
+        const bb = new XMLHttpRequest()
+        bb.open("get",`https://koreajson.com/posts/${num}`)
+        bb.send()
+        bb.addEventListener("load", (res) => {
+          console.log(res) // API 요청 결과
+          const userID = JSON.parse(res.target.response).UserId // 작성자 ID
+
+          const cc = new XMLHttpRequest()
+          cc.open("get",`https://koreajson.com/posts?userId=${userId}`)
+          cc.send()
+          cc.addEventListener("load", (res) => {
+            console.log(res)
+          })
+        })
+      })
+    }
+
+    /* new Promise((성공했을때실행함수, 실패했을때실행함수) => {
+      try{
+        // 여기서 API 요청을 한다면?
+        const response = `${"성공 데이터"}` // 백엔드에서 데이터를 받아옴
+      }catch(error){
+        실패했을때실행함수(error)
+      }
+    }).then((successData) => { // try 가 성공했을때 실행 성공했을때실행함수(response) 와 같다
+      console.log(successData)
+    }).catch((failData) => {   // catch 실행시 실행
+      console.log(failData)
+    })
+
+    const axios = {
+      get: () =>{
+        return new Promise((성공,실패) => {})
+      },
+      post: () =>{
+        return new Promise((성공,실패) => {})
+      }, 
+    } */
+
+    // const myPromise = () => {
+    //   axios.get(`http://numbersapi.com/random?min=1&max=200`).then((qqq) => {
+    //     axios.get(`https://koreajson.com/posts/${num}`).then((qqq) => {
+    //       axios.get(`https://koreajson.com/posts?userId=${userId}`).then((qqq) => {
+    //       })
+    //     })
+    //   })
+    // }
+    const myPromise = () => {
+      console.log("1번 실행")
+      axios.get(`http://numbersapi.com/random?min=1&max=200`).then((qqq) => {
+        console.log("2번 실행")
+        return axios.get(`https://koreajson.com/posts/${num}`)
+      }).then((qqq) => {
+        console.log("3번 실행")
+        return axios.get(`https://koreajson.com/posts?userId=${userId}`)
+        console.log("4번 실행")
+      }).then((qqq) => {
+        console.log("5번 실행")
+      })
+    }
+
+    // axios, fetch 등 mutation 도 똑같다 => 대표적인 Promise 를 지원하는 기능
+    // axios, fetch, mutation등을 기다리는 2가지 방법
+    // 1. .then() 활용
+    // 2. await 활용 => 주의 * await 는 아무데나 붙인다고 동작하지 않음 Promise 앞에 붙여줘야함*
+    const myAsyncAwait = async () => {
+      let num = await axios.get(`http://numbersapi.com/random?min=1&max=200`).data.num
+      let userId = await axios.get(`https://koreajson.com/posts/${num}`).data.userId
+      await axios.get(`https://koreajson.com/posts?userId=${userId}`)
+    }
+  </script
+<body>
+  <button onclick="myCallBack()">callBack practice</button>
+  <button onclick="myPromise()">promise practice</button>
+  <button onclick="myAsyncAwait()">AsyncAwait practice</button>
+</body>
+</html>
