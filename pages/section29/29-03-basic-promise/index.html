@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>promise pratice</title>
+  <script>
+    const onClickThen = () =>{
+      new Promise((resolve, reject) => {
+        try{
+          setTimeout(() => {
+            const response = "강아지" // 2초가 걸리는 API 응답값 강아지
+            resolve(response) // 성공하면 실행
+          }, 2000)
+        }catch(err){
+          reject(err.message) //  실패시 실행
+        }
+      }).then((res)=>{
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+
+    const onClickAwait = async () =>{
+      const result = await new Promise((resolve, reject) => {
+        try{
+          setTimeout(() => {
+            const response = "강아지" // 2초가 걸리는 API 응답값 강아지
+            resolve(response) // 성공하면 실행
+          }, 2000)
+        }catch(err){
+          reject(err.message) //  실패시 실행
+        }
+      })
+      console.log(result)
+    }
+  </script>
+</head>
+<body>
+  <button onclick="onClickThen()">promise excution(.then)</button>
+  <button onclick="onClickAwait()">promise excution(await)</button>
+</body>
+</html>

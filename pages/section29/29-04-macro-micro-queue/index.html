@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>EventLoop3</title>
+</head>
+<script>
+  const onClickLoop = () => {
+    console.log("시작")
+    
+    // call stack / task queue {macro queue / micro queue}
+    
+    // 비동기 작업(macro queue)
+    setTimeout(() => {
+      // 비동기 작업(micro queue)
+      new Promise((resolve) => { resolve("철수") }).then(() => {
+        console.log("저는 promise(setTimeout 내부 실행)")
+      })
+      console.log("setTimeout macro queue 0초뒤에 실행")
+      setTimeout(() => {
+        console.log("저는 setTimeout 내부 setTimeout 입니다.")
+      },0)
+    },0)
+
+    // 비동기 작업(micro queue)
+    new Promise((resolve) => { resolve("철수") }).then(() => {
+        console.log("저는 promise(1)")
+    })
+
+    // 비동기 작업(macro queue)
+    setInterval(() => {
+      // console.log("setInterval 5초 마다 실행")
+      console.log("setInterval 0초 마다 실행")
+    // },5000)
+    },0)
+    
+    let sum = 0
+    for (let i = 0; i < 90000000; i++) {
+      sum ++
+    }
+
+    // 비동기 작업(micro queue)
+    new Promise((resolve) => { resolve("철수") }).then(() => {
+        console.log("저는 promise(2)")
+    })
+    console.log("끝")
+  }
+</script>
+<body>
+  <button onclick="onClickLoop()">시작</button>  
+</body>
+</html>

@@ -4,6 +4,7 @@ import { wrapFormAsync } from "../../../src/commons/libraries/asyncFunc"
 import { useForm } from "react-hook-form"
 import { gql, useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
+import { Modal } from "antd"
 
 const ReactQuill = dynamic( async () => await import('react-quill'), { ssr: false } )
 
@@ -43,7 +44,7 @@ export default function WebEditorPage() {
       },
     })
 
-    const { Modal } = await import("antd") // code splitting
+    // const { Modal } = await import("antd") // code splitting
     console.log(`!!! ${data.content}`)
     Modal.success({content: "게시글 등록 success"})
 
