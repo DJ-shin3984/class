@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>promise.all practice</title>
+  <script>
+    console.time("=== 개별 Promise 각각 ==")
+    const startPromise = async () => {
+      const result1 = await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("success1")
+        },2000)
+      })
+      const result2 = await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("success2")
+        },3000)
+      })
+      const result3 = await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("success3")
+        },1000)
+      })
+      const results = [result1,result2,result3];
+      console.log(results)
+      console.timeEnd("=== 개별 Promise 각각 ==")
+    }
+
+    const startPromiseAll = async() => {
+      // await Promise.all([promise,promise,promise])
+      console.time("time")
+      const results = await Promise.all([
+        new Promise((resolve, reject) => { 
+          setTimeout(() => {
+            resolve("success1")
+          },2000)
+        }),
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve("success2")
+          },3000)
+        }),
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve("success3")
+          },1000)
+        })
+      ])
+      console.log(results)
+      console.timeEnd("time")
+    }
+  </script>
+</head>
+<body>
+  <button onclick="startPromise()">Promise 연습하기</button>
+  <button onclick="startPromiseAll()">Promise.all 연습하기</button>
+</body>
+</html>
