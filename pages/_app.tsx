@@ -6,14 +6,14 @@ import { globalStyles } from '../src/commons/styles/globalStyles'
 import { RecoilRoot, RecoilEnv } from 'recoil'
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false
-export default function App ({ Component }: AppProps) {
+export default function App ({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <ApolloSetting>
         <>
           <Global styles={globalStyles} />
           <Layout>
-            <Component />
+            <Component {...pageProps}/>
           </Layout>
         </>
       </ApolloSetting>
