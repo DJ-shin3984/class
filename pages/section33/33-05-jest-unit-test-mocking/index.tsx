@@ -60,6 +60,9 @@ export default function JestUnitTestMocking(): JSX.Element {
       <br />
       내용: <input role="input-contents" type="text" onChange={onChangeContents} />
       <br />
+      추가적인 input1: <input role="input-contents" type="text" onChange={onChangeContents} />
+      추가적인 input2: <input role="input-contents" type="text" onChange={onChangeContents} />
+      추가적인 input3: <input role="input-contents" type="text" onChange={onChangeContents} />
       <button role="submit-button" onClick={onClickSubmit}>CALL GRAPHQL-API (sync)</button>
     </div>
   );
